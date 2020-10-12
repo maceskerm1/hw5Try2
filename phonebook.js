@@ -53,20 +53,6 @@ function sendAjax(){
     		
 };
 const server = http.createServer(sendAjax);
-server.listen(80,function() {console.log("port 80")});
-
-function ajax_func(req,res){
-    sendAjax();
-    res.writeHead(200, {"Content-Type":"text/html"});
-    res.write(phonehtml);
-    res.end();
-    var method = "GET";
-    var json_display = query(document.getElementById("text").innerHTML);
-    var json_display = JSON.stringify(json_display);
-    res.writeHead(200, {"Content-Type":"application/json"});
-    res.write(json_display);
-    res.end();
-};
-const server = http.createServer(ajax_func);
+server.listen(80,function() {console.log("port 80")})
  // attach click event handler to sendAJAX push button
 document.getElementById("search").addEventListener("click",sendAJAX);
