@@ -11,34 +11,42 @@ function queryObjectToString(query) {
     // return value will be "message=Hi I am sending an AJAX request&name=Sahar"
     return(arrOfQuesryStrings.join('&'));
  }
-function sendAjax(){
-	console.log("Running")
-        let AJAX = new XMLHttopRequest();
-        AJAX.open(method,url,true)
-        AJAX.onerror = function() {
-                alert("Network error");
-        };
-	AJAX.send();
-}
+const urlPrefix="http://35.237.108.9//";
 const http = require('http');
 const phonehtml = require('./phonebook.html');
 const url = require('url');
 const fs = require('fs');
 const query = require('./query.js');
+console.log("EEE");
 
-function ajax_func(req,res){
-    sendAjax();
-    res.writeHead(200, {"Content-Type":"text/html"});
-    res.write(phonehtml);
-    res.end();
-    var method = "GET";
-    var json_display = query(document.getElementById("text").innerHTML);
-    var json_display = JSON.stringify(json_display);
-    res.writeHead(200, {"Content-Type":"application/json"});
-    res.write(json_display);
-    res.end();
+function sendAjax(){
+        let AJAX = new XMLHttopRequest();
+     	AJAX.onerror = function() {
+                alert("Network error");
+        }
+	AJAX.onload = function(req,res) {
+		if (this.status == 200){
+			console.log(this.responseText);
+    			res.writeHead(200, {"Content-Type":"text/html"});
+    			res.write(phonehtml);
+    			res.end();
+			display = document.getElementById("resultP").innerHTML
+			display = JSON.parse(display);
+			query(document.getElementById("text").innerHTML);
+		}
+		else {
+			AJAX.onerror = function() {
+                		alert("Network error");
+        		}
+		}};
+
+		AJAX.open("GET",urlPrefix+"getNames?letters="+queryObjectToString(display));			
+		AJAX.send();
+
+
+    		
 };
-const server = http.createServer(ajax_func);
+const server = http.createServer(sendAjax);
 server.listen(80,function() {console.log("port 80")});
  // attach click event handler to sendAJAX push button
 document.getElementById("search").addEventListener("click",sendAJAX);
