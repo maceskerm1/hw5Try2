@@ -12,6 +12,12 @@ function queryObjectToString(query) {
     return(arrOfQuesryStrings.join('&'));
  }
 const urlPrefix="http://35.237.108.9//";
+function sendAjax(){
+        let AJAX = new XMLHttopRequest();
+        AJAX.open (method,url,true)
+        AJAX.onerror = function() {
+                alert("Network error");
+        }};
 const http = require('http');
 const phonehtml = require('./phonebook.html');
 const url = require('url');
@@ -48,5 +54,19 @@ function sendAjax(){
 };
 const server = http.createServer(sendAjax);
 server.listen(80,function() {console.log("port 80")});
+
+function ajax_func(req,res){
+    sendAjax();
+    res.writeHead(200, {"Content-Type":"text/html"});
+    res.write(phonehtml);
+    res.end();
+    var method = "GET";
+    var json_display = query(document.getElementById("text").innerHTML);
+    var json_display = JSON.stringify(json_display);
+    res.writeHead(200, {"Content-Type":"application/json"});
+    res.write(json_display);
+    res.end();
+};
+const server = http.createServer(ajax_func);
  // attach click event handler to sendAJAX push button
 document.getElementById("search").addEventListener("click",sendAJAX);
