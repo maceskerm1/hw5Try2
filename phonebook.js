@@ -52,7 +52,6 @@ function sendAjax(){
 
     		
 };
-const server = http.createServer(sendAjax);
-server.listen(80,function() {console.log("port 80")})
+
  // attach click event handler to sendAJAX push button
 document.getElementById("search").addEventListener("click",sendAJAX);
