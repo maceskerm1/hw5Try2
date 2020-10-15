@@ -13,9 +13,9 @@ function sendAjax(){
 	AJAX.onload = function() {
 		if (this.status == 200){
 			console.log(this.responseText);
-    			res.writeHead(200, {"Content-Type":"text/html"});
-    			res.write(phonehtml);
-    			res.end();
+//    			res.writeHead(200, {"Content-Type":"text/html"});
+//    			res.write(phonehtml);
+//    			res.end();
 			display = document.getElementById("resultP").innerHTML
 			display = JSON.parse(display);
 			query(document.getElementById("text").innerHTML);

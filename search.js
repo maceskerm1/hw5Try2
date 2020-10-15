@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
-//utils = require('./utils');
 
 function serve_static_file (fileName, res) {           
 	fs.readFile(fileName,function(err,data) {
-        if (err) { // readFile generates an err object
-            let out = { error: "not_found",message: "'" + fileName + "' not found" };
+        if (err) { 
+	    let out = "not found";
+//            let out = { error: "not_found",message: "'" + fileName + "' not found" };
             sendJSONObj(res,404,out);
             res.end(JSON.stringify(out) + "\n");
         }
