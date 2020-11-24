@@ -1,12 +1,14 @@
+function queryObjectToString(query) {
     let properties = Object.keys(query);
     let arrOfQuesryStrings = properties.map(prop => prop+"="+query[prop]);
     return(arrOfQuesryStrings.join('&'));
  }
 
-document.getElementById("search").addEventListener("click",sendAJAX);
+document.getElementById("search").addEventListener("click",sendAjax);
 const urlPrefix="http://35.237.108.9//";
+//let AJAX = new XMLHttopRequest();
 function sendAjax(){
-        let AJAX = new XMLHttopRequest();
+        let AJAX = new XMLHttpRequest();
      	AJAX.onerror = function() {
                 alert("Network error");
         }
@@ -16,8 +18,6 @@ function sendAjax(){
 //    			res.writeHead(200, {"Content-Type":"text/html"});
 //    			res.write(phonehtml);
 //    			res.end();
-			display = document.getElementById("resultP").innerHTML
-			display = JSON.parse(display);
 			query(document.getElementById("text").innerHTML);
 		}
 		else {
@@ -25,6 +25,9 @@ function sendAjax(){
                 		alert("Network error");
         		}
 		}};
+//results p is what we display ( Changing based)
+			display = JSON.parse(display);
+			display = document.getElementById("text").value
 
 		AJAX.open("GET",urlPrefix+"Search?name="+queryObjectToString(display));			
 		AJAX.send();

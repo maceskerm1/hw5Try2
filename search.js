@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function serve_static_file (fileName, res) {           
+	console.log(fileName);
 	fs.readFile(fileName,function(err,data) {
         if (err) { 
 	    let out = "not found";

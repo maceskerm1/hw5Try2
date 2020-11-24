@@ -13,10 +13,10 @@ function request_func(req, res) {
                 	query.processQuery(queryItem,res);
                 	break;
             	case "/" :  //return default homepage
-			fileServer.serve_static_file("phonebook.html",res);
+			fileServer.serve_static_file("./phonebook.html",res);
                		break;
             	default:
-			fileServer.serve_static_file(queryPath,res);
+			fileServer.serve_static_file("./" + queryPath,res);
 			break;
         }    	
 }
