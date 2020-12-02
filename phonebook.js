@@ -5,7 +5,7 @@ function queryObjectToString(query) {
  }
 
 document.getElementById("search").addEventListener("click",sendAjax);
-const urlPrefix="http://35.237.108.9//";
+const urlPrefix="http://35.237.108.9/";
 //let AJAX = new XMLHttopRequest();
 function sendAjax(){
         let AJAX = new XMLHttpRequest();
@@ -18,21 +18,19 @@ function sendAjax(){
 //    			res.writeHead(200, {"Content-Type":"text/html"});
 //    			res.write(phonehtml);
 //    			res.end();
-			query(document.getElementById("text").innerHTML);
+//			query(document.getElementById("sname").innerHTML);
+			document.getElementById("
 		}
 		else {
-			AJAX.onerror = function() {
-                		alert("Network error");
-        		}
+                alert("Network error");
 		}};
 //results p is what we display ( Changing based)
-			display = JSON.parse(display);
-			display = document.getElementById("text").value
+//		display = JSON.parse(display);
+		display = document.getElementById("sname").value
 
-		AJAX.open("GET",urlPrefix+"Search?name="+queryObjectToString(display));			
+		AJAX.open("GET",urlPrefix+"search?name="+(display));			
 		AJAX.send();
 
 
     		
-};
-
+}
